@@ -19,11 +19,11 @@ def create_parser():
             '-p',
             '--port',
             dest='port',
-            default=getenv('AHLQUIST_PORT'))
+            default=getenv('AHLQUIST_PORT', 8080))
     parser.add_argument(
             '-d',
             '--playbookdir',
-            dest='playbooks',
+            dest='playbooksdir',
             default=getenv('AHLQUIST_PLAYBOOKS'))
 
     return parser
