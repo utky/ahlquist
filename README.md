@@ -1,7 +1,7 @@
 ahlquist
 ========
 
-An extremely simple Web API for Ansible.
+An extremely poor (rather then simple) Web API for Ansible.
 
 Features
 --------
