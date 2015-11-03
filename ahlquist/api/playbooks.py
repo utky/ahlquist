@@ -26,13 +26,17 @@ def install(request):
     playbooks = request.matchdict.get('playbooks')
     source = request.params.get('source')
     dest = path.join(playbookdir, playbooks)
+
+    if path.isdir(dest):
+        return Response(None, status=201)
+
     process = subprocess.Popen(
             ['git', 'clone', source, dest],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE)
 
     (stdout, stderr) = process.communicate(None)
-    return Response(stdout)
+    return Response(stdout, status=201)
 
 
 def update(request):
@@ -52,7 +56,7 @@ def update(request):
             stderr=subprocess.PIPE)
 
     (stdout, stderr) = process.communicate(None)
-    return Response(stdout)
+    return Response(stdout, status=200)
 
 
 
