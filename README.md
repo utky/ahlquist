@@ -1,7 +1,7 @@
 ahlquist
 ========
 
-An extremely poor (rather then simple) Web API for Ansible.
+An extremely poor (rather than simple) Web API for Ansible.
 
 Features
 --------
@@ -37,7 +37,7 @@ Finally you can run playbook.
 Starting ahlquist
 -----------------
 
-`main` script in this repository is a bootstrap to start server.
+To start server, run `main` script with options.
 
 ```
 usage: main [-h] [-i INVENTORY] [-p PORT] [-d PLAYBOOKSDIR]
@@ -54,3 +54,22 @@ optional arguments:
 - `INVENTORY` is an inventory file for ansible.
 - `PORT` is port number to bound.
 - `PLAYBOOKSDIR` is a workspace directory which stores playbook repos.
+
+Environment variables
+---------------------
+
+- `AHLQUIST_INVENTORY`: a path to inventory file which ansible will use.
+- `AHLQUIST_PORT`: a port number on which the server wait.
+- `AHLQUIST_PLAYBOOKS`: a directory path into which ther server store playbooks.
+
+Deploy with Docker
+------------------
+
+    mkdir ~/.playbooks
+    echo "127.0.0.1" >> ~/.inventory
+    docker run \
+        -v $HOME/.playbooks:/playbooks \
+        -v $HOME/.inventory:/inventory/hosts \
+        -p 8080:8080 \
+        -e ALQUIST_INVENTORY=/inventory/hosts \
+        utky/ahlquist
